@@ -1,0 +1,31 @@
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.exe
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.deps.json
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.runtimeconfig.json
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.pdb
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\MainWindow.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\App.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3_MarkupCompile.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3_MarkupCompile.lref
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\MainWindow.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.g.resources
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.GeneratedMSBuildEditorConfig.editorconfig
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.AssemblyInfoInputs.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.AssemblyInfo.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.CoreCompileInputs.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.sourcelink.json
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.dll
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\refint\Labb 3.dll
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.pdb
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.genruntimeconfig.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\ref\Labb 3.dll
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\MenuView.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\MenuView.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.AssemblyReference.cache
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\FontAwesome.Sharp.dll
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.Up2Date
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\ConfigurationView.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\PlayerView.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\ConfigurationView.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\PlayerView.baml

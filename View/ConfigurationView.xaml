@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Labb_3.View.ConfigurationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Labb_3.View"
+             DataContext="{Binding ConfigurationViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <!--Mappa upp listbox och utseendet av configview, logiken görs i configviewmodel-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width= "Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Row="0" Grid.Column="10" Height="420" Margin="5,20,0,0"  Width="400" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
+        <!--<DataGrid CanUserAddRows="False" CanUserDeleteRows="False" Margin="10,0,0,10" SelectionChanged="DataGrid_SelectionChanged"/>-->
+
+        <!--<StackPanel Grid.Column="1" Grid.Row="10">
+            <Label Content="Correct Answer:"/>
+            <TextBox Margin="5,0,5,15"/>
+            <Label Content="First Incorrect Answer:"/>
+            <TextBox Margin="5,0,5,15"/>
+            <Label Content="Second Incorrect Answer:"/>
+            <TextBox Margin="5,0,5,15"/>
+            <Label Content="Third Incorrect Answer:"/>
+            <TextBox Margin="5,0,5,15"/>
+        </StackPanel>-->
+    </Grid>
+</UserControl>
