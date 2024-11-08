@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 E:\Coding\VS Community\Labb 3\Labb 3\App.xaml
-4-175855766
+61551843078
 
-17-450813019
+26-970916050
 208909777504
-MainWindow.xaml;View\ConfigurationView.xaml;View\MenuView.xaml;View\PlayerView.xaml;
+Dialogs\CreateNewPackDialog.xaml;Dialogs\PackOptionsDialog.xaml;MainWindow.xaml;View\ConfigurationView.xaml;View\MenuView.xaml;View\PlayerView.xaml;
 
-True
+False
 

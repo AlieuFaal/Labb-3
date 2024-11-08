@@ -29,3 +29,7 @@ E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\Configuration
 E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\PlayerView.g.cs
 E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\ConfigurationView.baml
 E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\PlayerView.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateNewPackDialog.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateNewPackDialog.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.baml

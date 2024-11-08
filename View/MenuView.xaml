@@ -4,34 +4,61 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Labb_3.View"
-             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+             xmlns:viewmodel="clr-namespace:Labb_3.ViewModel" 
+             xmlns:converters="clr-namespace:Labb_3.Converters" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <Binding Path="MenuViewModel" />
+    </UserControl.DataContext>
     <Grid>
         <Menu>
             <MenuItem Header="_File" >
                 
                 <MenuItem Header="_New Question Pack" 
-                          Icon="{fa:Icon FolderPlus}"/>
+                          Icon="{fa:Icon FolderPlus}"
+                          Command="{Binding OpenCreatePackDialogCommand}"/>
 
-                <MenuItem Header="_Select Question Pack" 
-                          Icon="{fa:Icon FolderOpen}"/>
-                
+                <MenuItem 
+                    Header="_Select Question Pack"
+                    Icon="{fa:Icon FolderOpen}">
+                    <MenuItem.ItemsSource>
+                        <Binding Path="Packs"/>
+                    </MenuItem.ItemsSource>
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Header" Value="{Binding Model.Name}" />
+                            <Setter Property="ToolTip" Value="{Binding Model.Difficulty}" />
+                            <Setter Property="Command" Value="{Binding DataContext.SetActivePackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <Setter Property="CommandParameter" Value="{Binding}" />
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+
                 <MenuItem Header="_Delete Question Pack" 
-                          Icon="{fa:Icon FolderMinus}"/>
+                          Icon="{fa:Icon FolderMinus}" 
+                          IsEnabled="{Binding ActivePack, Converter={StaticResource NullToBooleanConverter}}"
+                          Command="{Binding DeleteActivePackCommand}"/>
 
 
                 <Separator />
                 
                 <MenuItem Header="_Import Questions" 
-                          Icon="{fa:Icon CloudArrowDown}"/>
+                          Icon="{fa:Icon CloudArrowDown}"
+                          InputGestureText="Ctrl+I" 
+                          Command=""/>
 
                 <Separator />
 
 
                 <MenuItem Header="E_xit" 
                           Icon="{fa:Icon circlexmark}"
-                          />
+                          InputGestureText="Alt+F4" />
                             
                 
             </MenuItem>
@@ -39,35 +66,48 @@
             <MenuItem Header="_Edit" >
                 
                 <MenuItem Header="_Add Question" 
-                          Icon="{fa:Icon Plus}"/>
+                          Icon="{fa:Icon Plus}"
+                          InputGestureText="Insert"/>
                 
                 <MenuItem Header="_Remove Question" 
-                          Icon="{fa:Icon Minus}"/>
+                          Icon="{fa:Icon Minus}"
+                          InputGestureText="Delete" IsEnabled="False"/>
 
                 <MenuItem Header="_Update Button" 
-                          Command="{Binding Path=PlayerViewModel.UpdateButton}"
+                          Command="{Binding Path=PlayerViewModel.UpdateButtonCommand}"
                           InputGestureText="Ctrl+U"/>
 
 
                 <MenuItem Header="_Pack Options" 
-                          Icon="{fa:Icon Sliders}"/>
+                          Icon="{fa:Icon Sliders}"
+                          InputGestureText="Ctrl+O"/>
                 
             </MenuItem>
 
             <MenuItem Header="_View" >
 
-                <MenuItem Header="_Play" 
-                          Icon="{fa:Icon Play}"/>
+                <MenuItem x:Name="Play"
+                          Header="_Play" 
+                          Icon="{fa:Icon Play}"
+                          InputGestureText="Ctrl+P"
+                          Command="{Binding DataContext.TogglePlayerViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
                 
-                <MenuItem Header="_Edit" 
-                          Icon="{fa:Icon Gears}"/>
+                <MenuItem x:Name="Edit"
+                          Header="_Edit" 
+                          Icon="{fa:Icon Gears}"
+                          InputGestureText="Ctrl+E"
+                          Command="{Binding DataContext.ToggleConfigViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
                 
                 <Separator />
                 
                 <MenuItem Header="_Fullscreen" 
-                          Icon="{fa:Icon Expand}"/>
+                          Icon="{fa:Icon Expand}"
+                          InputGestureText="Alt+Enter"/>
 
             </MenuItem>
         </Menu>
+
+        <!--<ContentControl Content="{Binding CurrentViewModel}" 
+                        Grid.Row="1"/>-->
     </Grid>
 </UserControl>

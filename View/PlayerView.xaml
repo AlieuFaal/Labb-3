@@ -8,13 +8,40 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button Grid.Row="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"   
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right" 
+                Width="60"
+                Height="60"
                 Content="{Binding Path = TestData}"
-                Margin="10"
                 Command="{Binding UpdateButtonCommand}"
                 />
+
+        <Button
+            Grid.Row="1"
+            Content="A1" 
+            Margin="0,5,405,80" HorizontalAlignment="Right" Width="155"/>
+
+        <Button
+            Grid.Row="1"
+            Content="A2" 
+            Margin="0,5,240,80" HorizontalAlignment="Right" Width="155"/>
+
+        <Button
+            Grid.Row="1"
+            Content="A3" 
+            Margin="0,80,405,5" HorizontalAlignment="Right" Width="155"/>
+
+        <Button
+            Grid.Row="1"
+            Content="A4" 
+            Margin="0,80,240,5" HorizontalAlignment="Right" Width="155"/>
 
     </Grid>
 </UserControl>

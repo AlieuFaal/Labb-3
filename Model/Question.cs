@@ -1,6 +1,6 @@
 ﻿namespace Labb_3.Model
 {
-    internal class Question
+    public class Question
     {
         public string Query { get; set; }
         public string CorrectAnswer { get; set; }

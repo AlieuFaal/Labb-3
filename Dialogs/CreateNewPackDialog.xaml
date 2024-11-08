@@ -1,0 +1,80 @@
+﻿<Window x:Class="Labb_3.Dialogs.CreateNewPackDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labb_3.Dialogs" 
+        xmlns:converters="clr-namespace:Labb_3.Converters" 
+        xmlns:viewmodel="clr-namespace:Labb_3.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:QuestionPackViewModel}"
+        mc:Ignorable="d"
+        Title="New Question Pack" Height="280" Width="230" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <converters:EnumToListConverter x:Key="EnumToListConverter" />
+        <converters:DoubleToIntConverter x:Key="DoubleToIntConverter" />
+        <!--<converters:DifficultyLevelConverter x:Key="DifficultyLevelConverter"/>-->
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="55*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,6,0,75" Grid.RowSpan="2">
+
+            <Label   Content="Pack Name:"
+                     FontWeight="Bold" Height="24" Width="202"/>
+            <TextBox Text="{Binding PackName, UpdateSourceTrigger=PropertyChanged}"
+                     Height="20"
+                     Width="200"/>
+
+        </StackPanel>
+
+        <StackPanel Margin="0,1,0,74" Grid.Row="1" Grid.RowSpan="2">
+
+            <Label Content="Difficulty:"
+                   FontWeight="Bold" 
+                   Width="202" 
+                   Height="29"/>
+            <ComboBox Width="200" 
+                      Height="24" 
+                      ItemsSource="{Binding PackDifficulty, Converter={StaticResource EnumToListConverter}}"
+                      SelectedItem="{Binding PackDifficulty, Mode=TwoWay}"/>
+            
+        </StackPanel>
+
+        <Label 
+            Content="{Binding ElementName=TimeSlider, Path=Value, Converter={StaticResource DoubleToIntConverter}}" 
+            Margin="79,1,90,74" Grid.Row="2" />
+
+        <StackPanel Margin="0,1,0,0" Grid.Row="2">
+
+            <Label Content="Time Limit:"
+                   FontWeight="Bold" 
+                   Width="201" 
+                   Height="29"/>
+
+            <Slider x:Name="TimeSlider"
+                    Width="200" 
+                    TickPlacement="BottomRight" 
+                    TickFrequency="5" 
+                    IsSnapToTickEnabled="True"
+                    Minimum="5" 
+                    Maximum="120" 
+                    Value="{Binding PackTimeLimit, Converter={StaticResource DoubleToIntConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+        </StackPanel>
+
+        <Button Content="Cancel" 
+                Margin="40,70,120,8" 
+                Grid.Row="2"
+                Command="{Binding CancelCommand}"/>
+
+        <Button Content="Create" 
+                Margin="120,70,40,8" 
+                Grid.Row="2"
+                Command="{Binding CreatePackCommand}"/>
+    </Grid>
+</Window>
