@@ -23,9 +23,20 @@ namespace Labb_3.Commands
             return _canExecute == null || _canExecute((T)parameter);
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
-            _execute((T)parameter);
+            if (parameter is string strParam && int.TryParse(strParam, out int intParam))
+            {
+                _execute((T)(object)intParam);
+            }
+            else if (parameter is int intParamValue)
+            {
+                _execute((T)(object)intParamValue);
+            }
+            else
+            {
+                _execute((T)parameter);
+            }
         }
 
         public event EventHandler CanExecuteChanged

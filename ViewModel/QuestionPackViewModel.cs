@@ -1,4 +1,5 @@
 ﻿using Labb_3.Commands;
+using Labb_3.Dialogs;
 using Labb_3.Model;
 using Labb_3.Services;
 using System.Collections.ObjectModel;
@@ -11,39 +12,41 @@ namespace Labb_3.ViewModel
     {
         private readonly QuestionPackService _questionPackService;
 
-        public ObservableCollection<QuestionPackViewModel> Packs { get; set; } = new ObservableCollection<QuestionPackViewModel>();
-        
-        public ObservableCollection<Question> Questions { get; }
-        
-        public QuestionPack Model => model;
-        private readonly QuestionPack model;
-        
-        private QuestionPack? selectedQuestionPack;
-        public QuestionPack? SelectedQuestionPack
+        private ObservableCollection<QuestionPackViewModel> _packs;
+        public ObservableCollection<QuestionPackViewModel> Packs
         {
-            get => selectedQuestionPack;
+            get => _packs;
             set
             {
-                if (selectedQuestionPack != value)
-                {
-                    selectedQuestionPack = value;
-                    OnPropertyChanged();
-                    OnSelectedQuestionPackChanged();
-                }
+                _packs = value;
+                OnPropertyChanged();
+                //OnSelectedQuestionPackChanged();
             }
         }
+
+        public ObservableCollection<Question> Questions { get; }
+
+        private readonly QuestionPack model;
+        public QuestionPack Model => model;
+
+
 
         public ICommand CreatePackCommand { get; }
 
         public ICommand CancelCommand { get; }
+
+
 
         public string PackName
         {
             get => model.Name;
             set
             {
-                model.Name = value;
-                OnPropertyChanged();
+                if (model.Name != value)
+                {
+                    model.Name = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -65,47 +68,33 @@ namespace Labb_3.ViewModel
             get => model.TimeLimit;
             set
             {
-                model.TimeLimit = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private void OnSelectedQuestionPackChanged()
-        {
-            if (selectedQuestionPack != null)
-            {
-               OnPropertyChanged(nameof(PackName));
-               OnPropertyChanged(nameof(PackDifficulty));
-               OnPropertyChanged(nameof(PackTimeLimit));
-               Questions.Clear();
-                
-                foreach (var question in selectedQuestionPack.Questions)
+                if (model.TimeLimit != value)
                 {
-                    Questions.Add(question);
+                    model.TimeLimit = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+
+
         private async void CreatePack()
         {
-            if (string.IsNullOrWhiteSpace(PackName) || PackTimeLimit <= 0)
+            var existingPacks = await _questionPackService.LoadQuestionPacksAsync();
+            if(existingPacks.Any(p => p.Model.Name == this.PackName))
             {
-                MessageBox.Show("Please fill in all fields with valid values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A pack with that name already exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            var newPack = new QuestionPack(PackName, PackDifficulty, PackTimeLimit);
-            var newPackViewModel = new QuestionPackViewModel(newPack);
+            var newPack = new QuestionPackViewModel(new QuestionPack(PackName, PackDifficulty, PackTimeLimit));
+            //var newPackViewModel = new QuestionPackViewModel(newPack);
             
-            Packs.Add(newPackViewModel);
+            Packs.Add(newPack);
 
-            if (_questionPackService == null)
-            {
-                MessageBox.Show("QuestionPackService is not initialized.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
             await _questionPackService.SaveQuestionPacksAsync(Packs);
 
+            OnPropertyChanged(nameof(Packs));
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive)?.Close();
         }
 
@@ -113,25 +102,18 @@ namespace Labb_3.ViewModel
         {
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive)?.Close();
         }
-       
-        //public QuestionPackViewModel()
-        //{
-        //    this.model = new QuestionPack();
-        //    this.Questions = new ObservableCollection<Question>();
 
-        //    CancelCommand = new DelegateCommand(_ => Cancel());
-        //    CreatePackCommand = new DelegateCommand(_ => CreatePack());
-        //    _questionPackService = new QuestionPackService();
-        //}
+
 
         public QuestionPackViewModel(QuestionPack pack)
         {
+            _questionPackService = new QuestionPackService();
             this.model = pack;
             this.Questions = new ObservableCollection<Question>(pack.Questions);
-
+            this.Packs = new ObservableCollection<QuestionPackViewModel>();
+           
             CancelCommand = new DelegateCommand(_ => Cancel());
             CreatePackCommand = new DelegateCommand(_ => CreatePack());
-            _questionPackService = new QuestionPackService();
         }
     }
 }

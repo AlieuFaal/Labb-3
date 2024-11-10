@@ -15,5 +15,11 @@
             CorrectAnswer = correctAnswer;
             IncorrectAnswers = new string[3] { incorrectAnswer1, incorrectAnswer2, incorrectAnswer3 };
         }
+
+        public List<string> ShuffleAnswers()
+        {
+            var answers = IncorrectAnswers.Append(CorrectAnswer).ToList();
+            return answers.OrderBy(_ => Guid.NewGuid()).ToList();
+        }
     }
 }

@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Labb_3.Dialogs"
+        xmlns:converters="clr-namespace:Labb_3.Converters" 
         mc:Ignorable="d"
         Title="Pack Options" 
         Height="280" 
-        Width="230" >
+        Width="230" ResizeMode="NoResize" Icon="/Dialogs/letter-q.ico" >
+    <Window.Resources>
+        <converters:EnumToListConverter x:Key="EnumToListConverter" />
+        <converters:DoubleToIntConverter x:Key="DoubleToIntConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="58*"/>
@@ -18,10 +23,15 @@
         <StackPanel Grid.Row="0">
             <Label   Content="Pack Name:"
                      FontWeight="Bold" Height="24" Width="202"/>
-            <TextBox Text=""
+            <TextBox x:Name="PackNameTextBox"
+                    Text="{Binding PackName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Height="20"
                      Width="200"/>
         </StackPanel>
+
+        <Label 
+            Content="{Binding ElementName=TimeSlider, Path=Value, Converter={StaticResource DoubleToIntConverter}}" 
+            Margin="78,1,82,46" Grid.Row="2" />
 
         <StackPanel Margin="0,1,0,0" Grid.Row="1">
             <Label Content="Difficulty:"
@@ -29,19 +39,25 @@
                    Width="202" 
                    Height="29"/>
 
-            <ComboBox Width="200" 
-                      Height="24" />
+            <ComboBox 
+                      Width="200" 
+                      Height="24" 
+                      ItemsSource="{Binding PackDifficulty, Converter={StaticResource EnumToListConverter}}"
+                      SelectedItem="{Binding PackDifficulty, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Margin="0,1,0,0" Grid.Row="2">
             <Label Content="Time Limit:"
                    FontWeight="Bold" Width="201" Height="29"/>
 
-            <Slider Width="200" 
+            <Slider x:Name="TimeSlider"
+                    Width="200" 
                     TickPlacement="BottomRight" 
                     TickFrequency="5" 
+                    IsSnapToTickEnabled="True"
                     Minimum="5" 
-                    Maximum="120" />
+                    Maximum="120" 
+                    Value="{Binding PackTimeLimit, Converter={StaticResource DoubleToIntConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 </Window>

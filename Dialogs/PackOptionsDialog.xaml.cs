@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Labb_3.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace Labb_3.Dialogs
     /// </summary>
     public partial class PackOptionsDialog : Window
     {
-        public PackOptionsDialog()
+        public PackOptionsDialog(QuestionPackViewModel activePack)
         {
             InitializeComponent();
+            DataContext = activePack;
         }
     }
 }

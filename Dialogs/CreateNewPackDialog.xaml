@@ -8,11 +8,10 @@
         xmlns:viewmodel="clr-namespace:Labb_3.ViewModel" 
         d:DataContext="{d:DesignInstance Type=viewmodel:QuestionPackViewModel}"
         mc:Ignorable="d"
-        Title="New Question Pack" Height="280" Width="230" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="New Question Pack" Height="280" Width="230" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Dialogs/letter-q.ico">
     <Window.Resources>
         <converters:EnumToListConverter x:Key="EnumToListConverter" />
         <converters:DoubleToIntConverter x:Key="DoubleToIntConverter" />
-        <!--<converters:DifficultyLevelConverter x:Key="DifficultyLevelConverter"/>-->
     </Window.Resources>
 
     <Grid>

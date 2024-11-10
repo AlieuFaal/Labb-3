@@ -12,8 +12,17 @@ namespace Labb_3.ViewModel
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly QuestionPackService _questionPackService;
-        
-        public ObservableCollection<QuestionPackViewModel> Packs { get; }
+       
+        private ObservableCollection<QuestionPackViewModel> _packs;
+        public ObservableCollection<QuestionPackViewModel> Packs
+        {
+            get => _packs;
+            set
+            {
+                _packs = value;
+                OnPropertyChanged();
+            }
+        }
 
         private QuestionPackViewModel? _activePack;
         public QuestionPackViewModel? ActivePack
@@ -30,11 +39,13 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public MenuViewModel MenuViewModel { get; }
+        public MenuViewModel MenuViewModel { get; set; }
 
         public ConfigurationViewModel ConfigurationViewModel { get; set; }
 
-        public PlayerViewModel PlayerViewModel { get; }
+        public PlayerViewModel PlayerViewModel { get; set; }
+
+
 
         private bool _isConfigurationViewVisible;
         public bool IsConfigurationViewVisible
@@ -64,48 +75,95 @@ namespace Labb_3.ViewModel
             }
         }
 
+
+        public ICommand ToggleFullScreenCommand { get; }
+
         public ICommand ToggleConfigViewCommand => new DelegateCommand(_ =>
         {
-            IsConfigurationViewVisible = true;
-            IsPlayerViewVisible = false;
+            StopQuiz();
         });
 
         public ICommand TogglePlayerViewCommand => new DelegateCommand(_ =>
         {
-            IsPlayerViewVisible = true;
-            IsConfigurationViewVisible = false;
+            StartQuiz();
         });
 
-        //public ICommand SetActivePackCommand { get; }
+        public ICommand OpenPackOptionsDialogCommand => new DelegateCommand(_ => OpenPackOptionsDialog());
+
+
 
         public async Task OnApplicationExitAsync()
         {
             await _questionPackService.SaveQuestionPacksAsync(Packs);
         }
 
-        //private void SetActivePack(QuestionPackViewModel pack)
-        //{
-        //    ActivePack = pack;
-        //}
+        private void OpenPackOptionsDialog()
+        {
+            if (ActivePack != null)
+            {
+                var dialog = new PackOptionsDialog(ActivePack);
+                dialog.ShowDialog();
+            }
+        }
+
+        public void StartQuiz()
+        {
+            IsConfigurationViewVisible = false;
+            IsPlayerViewVisible = true;
+            PlayerViewModel.StartQuiz();
+        }
+
+        public void StopQuiz()
+        {
+            IsConfigurationViewVisible = true;
+            IsPlayerViewVisible = false;
+            PlayerViewModel.StopQuiz();
+        }
+
+        private async void LoadPacks()
+        {
+           Packs = await _questionPackService.LoadQuestionPacksAsync();
+        }
+
+        private void ToggleFullScreen()
+        {
+            var mainWindow = Application.Current.MainWindow;
+            if (mainWindow != null)
+            {
+                if(mainWindow.WindowState == WindowState.Maximized && mainWindow.WindowStyle == WindowStyle.None)
+                {
+                    mainWindow.WindowState = WindowState.Normal;
+                    mainWindow.WindowStyle = WindowStyle.SingleBorderWindow;
+                }
+                else
+                {
+                    mainWindow.WindowState = WindowState.Maximized;
+                    mainWindow.WindowStyle = WindowStyle.None;
+                }
+            }
+        }
+
+
+
         public MainWindowViewModel()
         {
             _questionPackService = new QuestionPackService();
 
             MenuViewModel = new MenuViewModel(this);
-
             ConfigurationViewModel = new ConfigurationViewModel(this);
-
             PlayerViewModel = new PlayerViewModel(this);
-
-            ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack"));
-
-            IsConfigurationViewVisible = true;
-
-            IsPlayerViewVisible = false;
 
             Packs = new ObservableCollection<QuestionPackViewModel>();
 
-            //SetActivePackCommand = new RelayCommand<QuestionPackViewModel>(SetActivePack);
+            IsConfigurationViewVisible = true;
+            IsPlayerViewVisible = false;
+
+            LoadPacks();
+
+            MenuViewModel.ActivePack = Packs.FirstOrDefault();
+            ConfigurationViewModel.ActivePack = MenuViewModel.ActivePack;
+
+            ToggleFullScreenCommand = new DelegateCommand(_ => ToggleFullScreen());
         }
     }
 }

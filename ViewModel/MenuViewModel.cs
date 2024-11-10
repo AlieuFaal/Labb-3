@@ -27,21 +27,32 @@ namespace Labb_3.ViewModel
                 {
                     _activePack = value;
                     OnPropertyChanged();
-                    OnPropertyChanged(nameof(ConfigurationViewModel.ActivePack));
+                    OnPropertyChanged(nameof(ActivePack));
                     OnActivePackChanged();
                 }
             }
         }
+        
+
 
         public ICommand OpenCreatePackDialogCommand => new DelegateCommand(_ => OpenCreatePackDialog());
+       
+        public ICommand OpenPackOptionsDialogCommand => new DelegateCommand(_ => OpenPackOptionsDialog());
 
         public ICommand SetActivePackCommand { get; }
 
         public ICommand DeleteActivePackCommand { get; }
 
+        public ICommand ExitAppCommand => new DelegateCommand(_ => Application.Current.Shutdown());
+
+
+
         private void SetActivePack(QuestionPackViewModel pack)
         {
             ActivePack = pack;
+            mainWindowViewModel.ActivePack = pack;
+            mainWindowViewModel.ConfigurationViewModel.ActivePack = pack;
+            OnPropertyChanged(nameof(ActivePack));
         }
 
         private void OpenCreatePackDialog()
@@ -56,7 +67,7 @@ namespace Labb_3.ViewModel
             Packs.Add(new QuestionPackViewModel(new QuestionPack("My Question Pack")));
         }
 
-        public void DeleteQuestionPack(object obj)
+        public async void DeleteQuestionPack(object obj)
         {
             if (ActivePack != null)
             {
@@ -65,18 +76,15 @@ namespace Labb_3.ViewModel
                 result = MessageBox.Show(DeleteMessage, "Delete Question Pack.", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
+                    await _questionPackService.RemoveQuestionPackAsync(ActivePack);
                     Packs.Remove(ActivePack);
                     ActivePack = Packs.FirstOrDefault();
-                    _ = _questionPackService.SaveQuestionPacksAsync(Packs);
                 }
                 CommandManager.InvalidateRequerySuggested();
             }
         }
         
-        private bool CanDeletePack()
-        {
-            return ActivePack != null;
-        }
+        private bool CanDeletePack() => ActivePack != null && Packs.Count > 1;
 
         private void OnActivePackChanged()
         {
@@ -98,9 +106,26 @@ namespace Labb_3.ViewModel
             if (Packs.Count == 0)
             {
                 LoadQuestionPacks();
-                await _questionPackService.SaveQuestionPacksAsync(Packs);
+                _ = _questionPackService.SaveQuestionPacksAsync(Packs);
             }
         }
+
+        private void OpenPackOptionsDialog()
+        {
+            if (ActivePack != null)
+            {
+                var originalName = ActivePack.Model.Name;
+                var dialog = new PackOptionsDialog(ActivePack); 
+                dialog.Closed += async (s, e) =>
+                {
+                    //MessageBox.Show($"Updating Pack: {ActivePack.Model.Name}");
+                    await _questionPackService.UpdateQuestionPackAsync(ActivePack, originalName);
+                };
+                dialog.ShowDialog();
+            }
+        }
+
+
 
         public MenuViewModel(MainWindowViewModel? mainWindowViewModel)
         {
@@ -109,13 +134,13 @@ namespace Labb_3.ViewModel
             _questionPackService = new QuestionPackService();
 
             Packs = new ObservableCollection<QuestionPackViewModel>();
+            Packs.CollectionChanged += (s, e) => OnPropertyChanged(nameof(Packs));
 
-            ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack"));
+            ActivePack = mainWindowViewModel?.ActivePack;
 
             Task.Run(async () => await LoadQuestionPacksAsync());
 
             SetActivePackCommand = new RelayCommand<QuestionPackViewModel>(SetActivePack);
-
             DeleteActivePackCommand = new DelegateCommand(_ => DeleteQuestionPack(_), _ => CanDeletePack());
         }
     }

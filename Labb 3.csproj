@@ -10,6 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\correct.png" />
+    <None Remove="Assets\incorrect.png" />
+    <None Remove="Dialogs\letter-q.ico" />
     <None Remove="letter-q.ico" />
   </ItemGroup>
 
@@ -18,10 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Resource Include="Assets\correct.png" />
+    <Resource Include="Assets\incorrect.png" />
+    <Resource Include="Dialogs\letter-q.ico" />
     <Resource Include="letter-q.ico" />
   </ItemGroup>
 

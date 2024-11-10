@@ -19,7 +19,7 @@
     <Grid>
         <Menu>
             <MenuItem Header="_File" >
-                
+
                 <MenuItem Header="_New Question Pack" 
                           Icon="{fa:Icon FolderPlus}"
                           Command="{Binding OpenCreatePackDialogCommand}"/>
@@ -42,46 +42,47 @@
 
                 <MenuItem Header="_Delete Question Pack" 
                           Icon="{fa:Icon FolderMinus}" 
-                          IsEnabled="{Binding ActivePack, Converter={StaticResource NullToBooleanConverter}}"
+                          IsEnabled="{Binding CanDeletePack, Converter={StaticResource NullToBooleanConverter}}"
                           Command="{Binding DeleteActivePackCommand}"/>
 
 
                 <Separator />
-                
+
                 <MenuItem Header="_Import Questions" 
                           Icon="{fa:Icon CloudArrowDown}"
                           InputGestureText="Ctrl+I" 
+                          IsEnabled="False"
                           Command=""/>
 
                 <Separator />
 
 
-                <MenuItem Header="E_xit" 
+                <MenuItem x:Name="Exit"
+                          Header="E_xit" 
                           Icon="{fa:Icon circlexmark}"
-                          InputGestureText="Alt+F4" />
-                            
-                
+                          InputGestureText="Alt+F4" 
+                          Command="{Binding ExitAppCommand}"/>
+
+
             </MenuItem>
-                
+
             <MenuItem Header="_Edit" >
-                
+
                 <MenuItem Header="_Add Question" 
                           Icon="{fa:Icon Plus}"
-                          InputGestureText="Insert"/>
-                
+                          InputGestureText="Insert"
+                          Command="{Binding DataContext.ConfigurationViewModel.AddQuestionCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+
                 <MenuItem Header="_Remove Question" 
                           Icon="{fa:Icon Minus}"
-                          InputGestureText="Delete" IsEnabled="False"/>
-
-                <MenuItem Header="_Update Button" 
-                          Command="{Binding Path=PlayerViewModel.UpdateButtonCommand}"
-                          InputGestureText="Ctrl+U"/>
-
+                          InputGestureText="Delete" 
+                          Command="{Binding DataContext.ConfigurationViewModel.RemoveQuestionCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
 
                 <MenuItem Header="_Pack Options" 
                           Icon="{fa:Icon Sliders}"
-                          InputGestureText="Ctrl+O"/>
-                
+                          InputGestureText="Ctrl+O"
+                          Command="{Binding DataContext.OpenPackOptionsDialogCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+
             </MenuItem>
 
             <MenuItem Header="_View" >
@@ -91,23 +92,21 @@
                           Icon="{fa:Icon Play}"
                           InputGestureText="Ctrl+P"
                           Command="{Binding DataContext.TogglePlayerViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
-                
+
                 <MenuItem x:Name="Edit"
                           Header="_Edit" 
                           Icon="{fa:Icon Gears}"
                           InputGestureText="Ctrl+E"
                           Command="{Binding DataContext.ToggleConfigViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
-                
+
                 <Separator />
-                
+
                 <MenuItem Header="_Fullscreen" 
                           Icon="{fa:Icon Expand}"
-                          InputGestureText="Alt+Enter"/>
+                          InputGestureText="Alt+Enter"
+                          Command="{Binding DataContext.ToggleFullScreenCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
 
             </MenuItem>
         </Menu>
-
-        <!--<ContentControl Content="{Binding CurrentViewModel}" 
-                        Grid.Row="1"/>-->
     </Grid>
 </UserControl>

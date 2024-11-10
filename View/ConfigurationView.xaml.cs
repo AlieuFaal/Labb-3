@@ -1,4 +1,6 @@
 ﻿using Labb_3.Dialogs;
+using Labb_3.Model;
+using Labb_3.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +40,9 @@ namespace Labb_3.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PackOptionsDialog dialog = new PackOptionsDialog();
+            var pack = new QuestionPack(); 
+            var activePack = new QuestionPackViewModel(pack);
+            var dialog = new PackOptionsDialog(activePack);
             dialog.ShowDialog();
         }
 
