@@ -140,6 +140,10 @@ namespace Labb_3.ViewModel
             timer.Stop();
             MessageBox.Show($"Quiz Over! You got {CorrectAnswers} out of {mainWindowViewModel.ActivePack.Questions.Count} correct.");
         }
+        public void StopQuiz2()
+        {
+            timer.Stop();
+        }
 
         private void Timer_Tick(object? sender, EventArgs e)
         {

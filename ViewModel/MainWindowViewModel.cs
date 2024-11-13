@@ -117,7 +117,7 @@ namespace Labb_3.ViewModel
         {
             IsConfigurationViewVisible = true;
             IsPlayerViewVisible = false;
-            PlayerViewModel.StopQuiz();
+            PlayerViewModel.StopQuiz2();
         }
 
         private async void LoadPacks()
