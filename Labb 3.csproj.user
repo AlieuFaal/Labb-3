@@ -22,6 +22,9 @@
     <Compile Update="View\PlayerView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\QuizResultsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Dialogs\CreateNewPackDialog.xaml">
@@ -40,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\PlayerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\QuizResultsView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

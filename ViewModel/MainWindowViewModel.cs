@@ -45,6 +45,8 @@ namespace Labb_3.ViewModel
 
         public PlayerViewModel PlayerViewModel { get; set; }
 
+        public QuizResultsViewModel QuizResultsViewModel { get; set; }
+
 
 
         private bool _isConfigurationViewVisible;
@@ -75,12 +77,30 @@ namespace Labb_3.ViewModel
             }
         }
 
+        private bool _isQuizResultsViewVisible;
+        public bool IsQuizResultsViewVisible
+        {
+            get => _isQuizResultsViewVisible;
+            set
+            {
+                if (_isQuizResultsViewVisible != value)
+                {
+                    _isQuizResultsViewVisible = value;
+                    OnPropertyChanged(nameof(IsQuizResultsViewVisible));
+                }
+            }
+        }
+
+
 
         public ICommand ToggleFullScreenCommand { get; }
 
         public ICommand ToggleConfigViewCommand => new DelegateCommand(_ =>
         {
-            StopQuiz();
+            IsConfigurationViewVisible = true;
+            IsPlayerViewVisible = false;
+            IsQuizResultsViewVisible = false;
+            PlayerViewModel.StopQuiz2();
         });
 
         public ICommand TogglePlayerViewCommand => new DelegateCommand(_ =>
@@ -108,14 +128,17 @@ namespace Labb_3.ViewModel
 
         public void StartQuiz()
         {
-            IsConfigurationViewVisible = false;
             IsPlayerViewVisible = true;
+            IsConfigurationViewVisible = false;
+            IsQuizResultsViewVisible = false;
+
             PlayerViewModel.StartQuiz();
         }
 
         public void StopQuiz()
         {
-            IsConfigurationViewVisible = true;
+            IsQuizResultsViewVisible = true;
+            IsConfigurationViewVisible = false;
             IsPlayerViewVisible = false;
             PlayerViewModel.StopQuiz2();
         }
@@ -152,11 +175,13 @@ namespace Labb_3.ViewModel
             MenuViewModel = new MenuViewModel(this);
             ConfigurationViewModel = new ConfigurationViewModel(this);
             PlayerViewModel = new PlayerViewModel(this);
+            QuizResultsViewModel = new QuizResultsViewModel(this, PlayerViewModel);
 
             Packs = new ObservableCollection<QuestionPackViewModel>();
 
             IsConfigurationViewVisible = true;
             IsPlayerViewVisible = false;
+            IsQuizResultsViewVisible = false;
 
             LoadPacks();
 

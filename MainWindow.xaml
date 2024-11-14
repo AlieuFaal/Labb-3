@@ -47,5 +47,7 @@
         <view:ConfigurationView Grid.Row="1" Visibility="{Binding DataContext.IsConfigurationViewVisible, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <view:PlayerView Grid.Row="1" Visibility="{Binding DataContext.IsPlayerViewVisible, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <view:QuizResultsView Grid.Row="1" Visibility="{Binding DataContext.IsQuizResultsViewVisible, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </Window>

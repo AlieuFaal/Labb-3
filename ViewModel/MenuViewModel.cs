@@ -140,7 +140,8 @@ namespace Labb_3.ViewModel
 
             Task.Run(async () => await LoadQuestionPacksAsync());
 
-            SetActivePackCommand = new RelayCommand<QuestionPackViewModel>(SetActivePack);
+            //SetActivePackCommand = new DelegateCommand<QuestionPackViewModel>(SetActivePack);
+            SetActivePackCommand = new DelegateCommand(param => SetActivePack((QuestionPackViewModel)param));
             DeleteActivePackCommand = new DelegateCommand(_ => DeleteQuestionPack(_), _ => CanDeletePack());
         }
     }

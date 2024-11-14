@@ -13,8 +13,17 @@ namespace Labb_3.ViewModel
         private int timeRemaining;
 
         private int CurrentQuestionIndex;
-
-        private int CorrectAnswers;
+       
+        private int correctAnswers;
+        public int CorrectAnswers
+        {
+            get => correctAnswers;
+            private set
+            {
+                correctAnswers = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string currentQuestionText;
         public string CurrentQuestionText
@@ -138,7 +147,8 @@ namespace Labb_3.ViewModel
         public void StopQuiz()
         {
             timer.Stop();
-            MessageBox.Show($"Quiz Over! You got {CorrectAnswers} out of {mainWindowViewModel.ActivePack.Questions.Count} correct.");
+            mainWindowViewModel.StopQuiz();
+            //MessageBox.Show($"Quiz Over! You got {CorrectAnswers} out of {mainWindowViewModel.ActivePack.Questions.Count} correct.");
         }
         public void StopQuiz2()
         {
