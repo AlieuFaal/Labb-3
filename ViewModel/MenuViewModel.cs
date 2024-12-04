@@ -50,8 +50,11 @@ namespace Labb_3.ViewModel
         private void SetActivePack(QuestionPackViewModel pack)
         {
             ActivePack = pack;
-            mainWindowViewModel.ActivePack = pack;
-            mainWindowViewModel.ConfigurationViewModel.ActivePack = pack;
+            if (mainWindowViewModel != null)
+            {
+                mainWindowViewModel.ActivePack = pack;
+                mainWindowViewModel.ConfigurationViewModel.ActivePack = pack;
+            }
             OnPropertyChanged(nameof(ActivePack));
         }
 
@@ -62,9 +65,20 @@ namespace Labb_3.ViewModel
             dialog.ShowDialog();
         }
 
-        private void LoadQuestionPacks()
+        private void InsertDefaultPack()
         {
-            Packs.Add(new QuestionPackViewModel(new QuestionPack("My Question Pack")));
+            var defaultPack = new QuestionPackViewModel(new QuestionPack
+            {
+                Name = "Default Pack",
+                Difficulty = Difficulty.Medium,
+                TimeLimit = 120,
+                Questions = new List<Question>
+                {
+                    new Question("What is the capital of France?", "Paris", "London", "Berlin", "Madrid")
+                }
+            });
+
+            Packs.Add(defaultPack);
         }
 
         public async void DeleteQuestionPack(object obj)
@@ -84,11 +98,14 @@ namespace Labb_3.ViewModel
             }
         }
         
+        public bool IsActivePackSelected => ActivePack != null;
+
         private bool CanDeletePack() => ActivePack != null && Packs.Count > 1;
 
         private void OnActivePackChanged()
         {
-            if(DeleteActivePackCommand != null)
+            OnPropertyChanged(nameof(IsActivePackSelected));
+            if (DeleteActivePackCommand != null)
             {
                 ((DelegateCommand)DeleteActivePackCommand).RaiseCanExecuteChanged();
             }
@@ -105,8 +122,8 @@ namespace Labb_3.ViewModel
 
             if (Packs.Count == 0)
             {
-                LoadQuestionPacks();
-                _ = _questionPackService.SaveQuestionPacksAsync(Packs);
+                InsertDefaultPack();
+                await _questionPackService.SaveQuestionPacksAsync(Packs);
             }
         }
 

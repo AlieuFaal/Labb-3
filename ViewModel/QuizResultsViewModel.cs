@@ -14,7 +14,17 @@ namespace Labb_3.ViewModel
         private readonly MainWindowViewModel mainWindowViewModel;
         private readonly PlayerViewModel playerViewModel;
 
-        public string ResultText => $"You got {playerViewModel.CorrectAnswers} out of {mainWindowViewModel.ActivePack.Questions.Count} correct!";
+        public string ResultText
+        {
+            get
+            {
+                if (playerViewModel?.CorrectAnswers == null || mainWindowViewModel?.ActivePack?.Questions == null)
+                {
+                    return "Result not available.";
+                }
+                return $"You got {playerViewModel.CorrectAnswers} out of {mainWindowViewModel.ActivePack.Questions.Count} correct!";
+            }
+        }
 
 
         public ICommand RestartCommand { get; }

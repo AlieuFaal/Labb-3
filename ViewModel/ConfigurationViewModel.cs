@@ -44,22 +44,25 @@ namespace Labb_3.ViewModel
             get => _selectedQuestion;
             set
             {
-                _selectedQuestion = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(SelectedQuestionQuery));
-                OnPropertyChanged(nameof(SelectedCorrectAnswer));
-                OnPropertyChanged(nameof(SelectedIncorrectAnswer1));
-                OnPropertyChanged(nameof(SelectedIncorrectAnswer2));
-                OnPropertyChanged(nameof(SelectedIncorrectAnswer3));
+                if (_selectedQuestion != value)
+                {
+                    _selectedQuestion = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(SelectedQuestionQuery));
+                    OnPropertyChanged(nameof(SelectedCorrectAnswer));
+                    OnPropertyChanged(nameof(SelectedIncorrectAnswer1));
+                    OnPropertyChanged(nameof(SelectedIncorrectAnswer2));
+                    OnPropertyChanged(nameof(SelectedIncorrectAnswer3));
+                }
             }
         }
 
-        public string SelectedQuestionQuery
+        public string? SelectedQuestionQuery
         {
             get => SelectedQuestion?.Query;
             set
             {
-                if (SelectedQuestion != null)
+                if (SelectedQuestion != null && SelectedQuestion.Query != value)
                 {
                     SelectedQuestion.Query = value;
                     OnPropertyChanged();
@@ -67,12 +70,12 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public string SelectedCorrectAnswer
+        public string? SelectedCorrectAnswer
         {
             get => SelectedQuestion?.CorrectAnswer;
             set
             {
-                if (SelectedQuestion != null)
+                if (SelectedQuestion != null && SelectedQuestion.CorrectAnswer != value)
                 {
                     SelectedQuestion.CorrectAnswer = value;
                     OnPropertyChanged();
@@ -80,12 +83,12 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public string SelectedIncorrectAnswer1
+        public string? SelectedIncorrectAnswer1
         {
             get => SelectedQuestion?.IncorrectAnswers[0];
             set
             {
-                if (SelectedQuestion != null)
+                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers[0] != value)
                 {
                     SelectedQuestion.IncorrectAnswers[0] = value;
                     OnPropertyChanged();
@@ -93,12 +96,12 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public string SelectedIncorrectAnswer2
+        public string? SelectedIncorrectAnswer2
         {
             get => SelectedQuestion?.IncorrectAnswers[1];
             set
             {
-                if (SelectedQuestion != null)
+                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers[1] != value)
                 {
                     SelectedQuestion.IncorrectAnswers[1] = value;
                     OnPropertyChanged();
@@ -106,12 +109,12 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public string SelectedIncorrectAnswer3
+        public string? SelectedIncorrectAnswer3
         {
             get => SelectedQuestion?.IncorrectAnswers[2];
             set
             {
-                if (SelectedQuestion != null)
+                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers[2] != value)
                 {
                     SelectedQuestion.IncorrectAnswers[2] = value;
                     OnPropertyChanged();
@@ -138,7 +141,6 @@ namespace Labb_3.ViewModel
                 await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
                 OnPropertyChanged(nameof(Questions));
                 ClearNewQuestionFields();
-                
             }
         }
 

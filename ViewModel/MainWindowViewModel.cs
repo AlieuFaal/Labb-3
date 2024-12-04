@@ -126,13 +126,19 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public void StartQuiz()
+        public async void StartQuiz()
         {
-            IsPlayerViewVisible = true;
-            IsConfigurationViewVisible = false;
-            IsQuizResultsViewVisible = false;
+            if (ActivePack != null)
+            {
+                // Save questions before starting the quiz
+                await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
 
-            PlayerViewModel.StartQuiz();
+                IsPlayerViewVisible = true;
+                IsConfigurationViewVisible = false;
+                IsQuizResultsViewVisible = false;
+
+                PlayerViewModel.StartQuiz();
+            }
         }
 
         public void StopQuiz()
