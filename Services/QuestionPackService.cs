@@ -18,8 +18,7 @@ namespace Labb_3.Services
     public class QuestionPackService
     {
         private static readonly string QuestionPacksFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Quiz Configurator", "QuestionPacks.json");
-
-
+        private readonly ObservableCollection<QuestionPackViewModel> packs;
 
         public async Task SaveQuestionPacksAsync(ObservableCollection<QuestionPackViewModel> packs)
         {
@@ -55,7 +54,7 @@ namespace Labb_3.Services
             var json = await File.ReadAllTextAsync(QuestionPacksFilePath);
             var questionPacks = JsonSerializer.Deserialize<List<QuestionPack>>(json) ?? new List<QuestionPack>();
 
-            var viewModelPacks = new ObservableCollection<QuestionPackViewModel>(questionPacks.Select(p => new QuestionPackViewModel(p)));
+            var viewModelPacks = new ObservableCollection<QuestionPackViewModel>(questionPacks.Select(p => new QuestionPackViewModel(p, packs)));
             return viewModelPacks;
         }
 
@@ -128,7 +127,7 @@ namespace Labb_3.Services
                     Difficulty = packName.Model.Difficulty,
                     TimeLimit = packName.Model.TimeLimit,
                     Questions = questions
-                });
+                }, packs);
                 existingPacks.Add(newPack);
             }
 

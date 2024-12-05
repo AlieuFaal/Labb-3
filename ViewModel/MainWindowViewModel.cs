@@ -182,12 +182,14 @@ namespace Labb_3.ViewModel
         {
             _questionPackService = new QuestionPackService();
 
-            MenuViewModel = new MenuViewModel(this);
+            Packs = new ObservableCollection<QuestionPackViewModel>();
+
+            MenuViewModel = new MenuViewModel(this, Packs);
             ConfigurationViewModel = new ConfigurationViewModel(this);
             PlayerViewModel = new PlayerViewModel(this);
             QuizResultsViewModel = new QuizResultsViewModel(this, PlayerViewModel);
 
-            Packs = new ObservableCollection<QuestionPackViewModel>();
+            
 
             IsConfigurationViewVisible = true;
             IsPlayerViewVisible = false;

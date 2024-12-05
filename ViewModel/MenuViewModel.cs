@@ -15,7 +15,17 @@ namespace Labb_3.ViewModel
         private readonly MainWindowViewModel? mainWindowViewModel;
 
         private readonly QuestionPackService _questionPackService;
-        public ObservableCollection<QuestionPackViewModel> Packs { get; }
+        private readonly ObservableCollection<QuestionPackViewModel> packs;
+        private ObservableCollection<QuestionPackViewModel> _packs;
+        public ObservableCollection<QuestionPackViewModel> Packs
+        {
+            get => _packs;
+            set
+            {
+                _packs = value;
+                OnPropertyChanged();
+            }
+        }
 
         private QuestionPackViewModel? _activePack;
         public QuestionPackViewModel? ActivePack
@@ -60,7 +70,7 @@ namespace Labb_3.ViewModel
 
         private void OpenCreatePackDialog()
         {
-            var viewModel = new QuestionPackViewModel(new QuestionPack());
+            var viewModel = new QuestionPackViewModel(new QuestionPack(), Packs);
             var dialog = new CreateNewPackDialog(viewModel);
             dialog.ShowDialog();
         }
@@ -76,7 +86,7 @@ namespace Labb_3.ViewModel
                 {
                     new Question("What is the capital of France?", "Paris", "London", "Berlin", "Madrid")
                 }
-            });
+            }, packs);
 
             Packs.Add(defaultPack);
         }
@@ -92,9 +102,10 @@ namespace Labb_3.ViewModel
                 {
                     await _questionPackService.RemoveQuestionPackAsync(ActivePack);
                     Packs.Remove(ActivePack);
-                    ActivePack = Packs.FirstOrDefault();
+                    ActivePack = null;
+                    OnPropertyChanged(nameof(ActivePack));
                 }
-                ActivePack = null;
+                
                 CommandManager.InvalidateRequerySuggested();
             }
         }
@@ -145,20 +156,19 @@ namespace Labb_3.ViewModel
 
 
 
-        public MenuViewModel(MainWindowViewModel? mainWindowViewModel)
+        public MenuViewModel(MainWindowViewModel? mainWindowViewModel, ObservableCollection<QuestionPackViewModel> packs)
         {
             this.mainWindowViewModel = mainWindowViewModel;
 
             _questionPackService = new QuestionPackService();
 
-            Packs = new ObservableCollection<QuestionPackViewModel>();
+            Packs = packs;
             Packs.CollectionChanged += (s, e) => OnPropertyChanged(nameof(Packs));
 
             ActivePack = mainWindowViewModel?.ActivePack;
 
             Task.Run(async () => await LoadQuestionPacksAsync());
 
-            //SetActivePackCommand = new DelegateCommand<QuestionPackViewModel>(SetActivePack);
             SetActivePackCommand = new DelegateCommand(param => SetActivePack((QuestionPackViewModel)param));
             DeleteActivePackCommand = new DelegateCommand(_ => DeleteQuestionPack(_), _ => CanDeletePack());
         }

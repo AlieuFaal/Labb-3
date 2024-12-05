@@ -3,6 +3,7 @@ using Labb_3.Model;
 using Labb_3.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace Labb_3.View
     /// </summary>
     public partial class ConfigurationView : UserControl
     {
+        private readonly ObservableCollection<QuestionPackViewModel> packs;
+
         public ConfigurationView()
         {
             InitializeComponent();
@@ -41,7 +44,7 @@ namespace Labb_3.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var pack = new QuestionPack(); 
-            var activePack = new QuestionPackViewModel(pack);
+            var activePack = new QuestionPackViewModel(pack, packs);
             var dialog = new PackOptionsDialog(activePack);
             dialog.ShowDialog();
         }

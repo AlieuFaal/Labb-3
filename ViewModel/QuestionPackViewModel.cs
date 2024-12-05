@@ -87,7 +87,7 @@ namespace Labb_3.ViewModel
                 return;
             }
 
-            var newPack = new QuestionPackViewModel(new QuestionPack(PackName, PackDifficulty, PackTimeLimit));
+            var newPack = new QuestionPackViewModel(new QuestionPack(PackName, PackDifficulty, PackTimeLimit), Packs);
             //var newPackViewModel = new QuestionPackViewModel(newPack);
             
             Packs.Add(newPack);
@@ -105,12 +105,12 @@ namespace Labb_3.ViewModel
 
 
 
-        public QuestionPackViewModel(QuestionPack pack)
+        public QuestionPackViewModel(QuestionPack pack, ObservableCollection<QuestionPackViewModel> packs)
         {
             _questionPackService = new QuestionPackService();
             this.model = pack;
             this.Questions = new ObservableCollection<Question>(pack.Questions);
-            this.Packs = new ObservableCollection<QuestionPackViewModel>();
+            Packs = packs;
            
             CancelCommand = new DelegateCommand(_ => Cancel());
             CreatePackCommand = new DelegateCommand(_ => CreatePack());
