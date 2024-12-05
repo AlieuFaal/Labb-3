@@ -53,7 +53,8 @@
                 Margin="380,10,0,0" 
                 Width="20" 
                 Content="{fa:Icon Sliders}"
-                Command="{Binding MenuViewModel.OpenPackOptionsDialogCommand}" Grid.RowSpan="2" />
+                Command="{Binding MenuViewModel.OpenPackOptionsDialogCommand}" Grid.RowSpan="2" 
+                IsEnabled="{Binding MenuViewModel.IsActivePackSelected}"/>
 
         <Button x:Name="AddQuestion"
                 HorizontalAlignment="Left" 
@@ -62,7 +63,8 @@
                 Margin="320,10,0,0" 
                 Width="20"
                 Content="{fa:Icon Plus}"
-                Command="{Binding ConfigurationViewModel.AddQuestionCommand}" Grid.RowSpan="2" />
+                Command="{Binding ConfigurationViewModel.AddQuestionCommand}" Grid.RowSpan="2" 
+                IsEnabled="{Binding MenuViewModel.IsActivePackSelected}"/>
 
         <Button x:Name="RemoveQuestion"
                 HorizontalAlignment="Left" 
@@ -71,7 +73,8 @@
                 Margin="350,10,0,0" 
                 Width="20"
                 Content="{fa:Icon Minus}" 
-                Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}" Grid.RowSpan="2" />
+                Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}" Grid.RowSpan="2" 
+                IsEnabled="{Binding MenuViewModel.IsActivePackSelected}"/>
 
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10,0,10,10" Visibility="{Binding MenuViewModel.IsActivePackSelected, Converter={StaticResource BooleanToVisibilityConverter}}">

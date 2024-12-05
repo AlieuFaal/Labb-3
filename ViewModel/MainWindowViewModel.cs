@@ -115,6 +115,11 @@ namespace Labb_3.ViewModel
         public async Task OnApplicationExitAsync()
         {
             await _questionPackService.SaveQuestionPacksAsync(Packs);
+
+            if (ActivePack != null)
+            {
+                await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
+            }
         }
 
         private void OpenPackOptionsDialog()
@@ -130,7 +135,6 @@ namespace Labb_3.ViewModel
         {
             if (ActivePack != null)
             {
-                // Save questions before starting the quiz
                 await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
 
                 IsPlayerViewVisible = true;

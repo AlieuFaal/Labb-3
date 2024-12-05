@@ -94,6 +94,7 @@ namespace Labb_3.ViewModel
                     Packs.Remove(ActivePack);
                     ActivePack = Packs.FirstOrDefault();
                 }
+                ActivePack = null;
                 CommandManager.InvalidateRequerySuggested();
             }
         }

@@ -81,7 +81,7 @@ namespace Labb_3.ViewModel
         private async void CreatePack()
         {
             var existingPacks = await _questionPackService.LoadQuestionPacksAsync();
-            if(existingPacks.Any(p => p.Model.Name == this.PackName))
+            if (existingPacks.Any(p => p.Model.Name == this.PackName))
             {
                 MessageBox.Show("A pack with that name already exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

@@ -71,17 +71,20 @@
                 <MenuItem Header="_Add Question" 
                           Icon="{fa:Icon Plus}"
                           InputGestureText="Insert"
-                          Command="{Binding DataContext.ConfigurationViewModel.AddQuestionCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                          Command="{Binding DataContext.ConfigurationViewModel.AddQuestionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                          IsEnabled="{Binding IsActivePackSelected}"/>
 
                 <MenuItem Header="_Remove Question" 
                           Icon="{fa:Icon Minus}"
                           InputGestureText="Delete" 
-                          Command="{Binding DataContext.ConfigurationViewModel.RemoveQuestionCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                          Command="{Binding DataContext.ConfigurationViewModel.RemoveQuestionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                          IsEnabled="{Binding IsActivePackSelected}"/>
 
                 <MenuItem Header="_Pack Options" 
                           Icon="{fa:Icon Sliders}"
                           InputGestureText="Ctrl+O"
-                          Command="{Binding DataContext.OpenPackOptionsDialogCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                          Command="{Binding DataContext.OpenPackOptionsDialogCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                          IsEnabled="{Binding IsActivePackSelected}"/>
 
             </MenuItem>
 
@@ -91,7 +94,8 @@
                           Header="_Play" 
                           Icon="{fa:Icon Play}"
                           InputGestureText="Ctrl+P"
-                          Command="{Binding DataContext.TogglePlayerViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                          Command="{Binding DataContext.TogglePlayerViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                          IsEnabled="{Binding IsActivePackSelected}"/>
 
                 <MenuItem x:Name="Edit"
                           Header="_Edit" 

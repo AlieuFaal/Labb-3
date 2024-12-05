@@ -62,7 +62,7 @@ namespace Labb_3.ViewModel
             get => SelectedQuestion?.Query;
             set
             {
-                if (SelectedQuestion != null && SelectedQuestion.Query != value)
+                if (SelectedQuestion != null && value != null && SelectedQuestion.Query != value)
                 {
                     SelectedQuestion.Query = value;
                     OnPropertyChanged();
@@ -75,7 +75,7 @@ namespace Labb_3.ViewModel
             get => SelectedQuestion?.CorrectAnswer;
             set
             {
-                if (SelectedQuestion != null && SelectedQuestion.CorrectAnswer != value)
+                if (SelectedQuestion != null && value != null && SelectedQuestion.CorrectAnswer != value)
                 {
                     SelectedQuestion.CorrectAnswer = value;
                     OnPropertyChanged();
@@ -85,10 +85,10 @@ namespace Labb_3.ViewModel
 
         public string? SelectedIncorrectAnswer1
         {
-            get => SelectedQuestion?.IncorrectAnswers[0];
+            get => SelectedQuestion?.IncorrectAnswers?[0];
             set
             {
-                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers[0] != value)
+                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers != null && SelectedQuestion.IncorrectAnswers[0] != value)
                 {
                     SelectedQuestion.IncorrectAnswers[0] = value;
                     OnPropertyChanged();
@@ -98,10 +98,10 @@ namespace Labb_3.ViewModel
 
         public string? SelectedIncorrectAnswer2
         {
-            get => SelectedQuestion?.IncorrectAnswers[1];
+            get => SelectedQuestion?.IncorrectAnswers?[1];
             set
             {
-                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers[1] != value)
+                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers != null && SelectedQuestion.IncorrectAnswers[1] != value)
                 {
                     SelectedQuestion.IncorrectAnswers[1] = value;
                     OnPropertyChanged();
@@ -111,10 +111,10 @@ namespace Labb_3.ViewModel
 
         public string? SelectedIncorrectAnswer3
         {
-            get => SelectedQuestion?.IncorrectAnswers[2];
+            get => SelectedQuestion?.IncorrectAnswers?[2];
             set
             {
-                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers[2] != value)
+                if (SelectedQuestion != null && SelectedQuestion.IncorrectAnswers != null && SelectedQuestion.IncorrectAnswers[2] != value)
                 {
                     SelectedQuestion.IncorrectAnswers[2] = value;
                     OnPropertyChanged();
@@ -122,15 +122,13 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public QuestionPack Model => ActivePack?.Model;
+        public QuestionPack? Model => ActivePack?.Model;
 
         private readonly ICommand _addQuestionCommand;
         public ICommand AddQuestionCommand => _addQuestionCommand;
 
         private readonly ICommand _removeQuestionCommand;
         public ICommand RemoveQuestionCommand => _removeQuestionCommand;
-
-
 
         private async void AddQuestion()
         {
@@ -173,7 +171,6 @@ namespace Labb_3.ViewModel
             OnPropertyChanged(nameof(NewIncorrectAnswer3));
         }
 
-
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
             this.mainWindowViewModel = mainWindowViewModel;
@@ -184,6 +181,14 @@ namespace Labb_3.ViewModel
             _removeQuestionCommand = new DelegateCommand(RemoveQuestion);
 
             ActivePack = mainWindowViewModel?.ActivePack;
+
+            Questions = new ObservableCollection<Question>();
+            NewQuestionQuery = string.Empty;
+            NewCorrectAnswer = string.Empty;
+            NewIncorrectAnswer1 = string.Empty;
+            NewIncorrectAnswer2 = string.Empty;
+            NewIncorrectAnswer3 = string.Empty;
+            _selectedQuestion = new Question(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
         }
     }
 }

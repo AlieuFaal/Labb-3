@@ -137,6 +137,11 @@ namespace Labb_3.ViewModel
 
         public void StartQuiz()
         {
+            if (mainWindowViewModel?.ActivePack?.Model == null)
+            {
+                throw new InvalidOperationException("ActivePack or its Model is not set.");
+            }
+
             timeRemaining = mainWindowViewModel.ActivePack.Model.TimeLimit;
             CurrentQuestionIndex = 0;
             CorrectAnswers = 0;
@@ -147,8 +152,7 @@ namespace Labb_3.ViewModel
         public void StopQuiz()
         {
             timer.Stop();
-            mainWindowViewModel.StopQuiz();
-            //MessageBox.Show($"Quiz Over! You got {CorrectAnswers} out of {mainWindowViewModel.ActivePack.Questions.Count} correct.");
+            mainWindowViewModel?.StopQuiz();
         }
         public void StopQuiz2()
         {
@@ -167,7 +171,7 @@ namespace Labb_3.ViewModel
 
         private void LoadNextQuestion()
         {
-            if (CurrentQuestionIndex >= mainWindowViewModel.ActivePack.Questions.Count)
+            if (mainWindowViewModel?.ActivePack?.Questions == null || CurrentQuestionIndex >= mainWindowViewModel.ActivePack.Questions.Count)
             {
                 StopQuiz();
                 return;
@@ -176,7 +180,7 @@ namespace Labb_3.ViewModel
             var question = mainWindowViewModel.ActivePack.Questions[CurrentQuestionIndex];
             var shuffledAnswers = question.ShuffleAnswers();
             var answers = new[] { question.CorrectAnswer, question.IncorrectAnswer1, question.IncorrectAnswer2, question.IncorrectAnswer3 };
-        
+
             if (question != null)
             {
                 CurrentQuestionText = question.Query;
@@ -193,10 +197,10 @@ namespace Labb_3.ViewModel
 
         private async void CheckAnswer(int answerIndex)
         {
-            //if (answerIndex < 0 || answerIndex > 3)
-            //{
-            //    throw new ArgumentOutOfRangeException(nameof(answerIndex), "Answer index must be between 0 and 3.");
-            //}
+            if (mainWindowViewModel?.ActivePack?.Questions == null)
+            {
+                throw new InvalidOperationException("ActivePack or its Questions are not set.");
+            }
 
             var question = mainWindowViewModel.ActivePack.Questions[CurrentQuestionIndex];
             var selectedAnswer = answerIndex switch
@@ -259,6 +263,16 @@ namespace Labb_3.ViewModel
             this.timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             timer.Tick += Timer_Tick;
             AnswerCommand = new RelayCommand<int>(CheckAnswer);
+
+            currentQuestionText = string.Empty;
+            answer1 = string.Empty;
+            answer2 = string.Empty;
+            answer3 = string.Empty;
+            answer4 = string.Empty;
+            answer1State = string.Empty;
+            answer2State = string.Empty;
+            answer3State = string.Empty;
+            answer4State = string.Empty;
         }
     }
 }
