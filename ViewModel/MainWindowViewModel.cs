@@ -110,18 +110,6 @@ namespace Labb_3.ViewModel
 
         public ICommand OpenPackOptionsDialogCommand => new DelegateCommand(_ => OpenPackOptionsDialog());
 
-
-
-        public async Task OnApplicationExitAsync()
-        {
-            await _questionPackService.SaveQuestionPacksAsync(Packs);
-
-            if (ActivePack != null)
-            {
-                await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
-            }
-        }
-
         private void OpenPackOptionsDialog()
         {
             if (ActivePack != null)
@@ -131,11 +119,11 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public async void StartQuiz()
+        public void StartQuiz()
         {
             if (ActivePack != null)
             {
-                await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
+                //await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
 
                 IsPlayerViewVisible = true;
                 IsConfigurationViewVisible = false;
@@ -153,9 +141,25 @@ namespace Labb_3.ViewModel
             PlayerViewModel.StopQuiz2();
         }
 
-        private async void LoadPacks()
+        public async void LoadPacks()
         {
            Packs = await _questionPackService.LoadQuestionPacksAsync();
+        }
+
+        public async void SaveQuestion()
+        {
+            if (ActivePack?.Questions != null)
+            {
+                await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
+            }
+        }
+
+        public async void SaveQuestionPacks()
+        {
+            if (Packs != null)
+            {
+                await _questionPackService.SaveQuestionPacksAsync(Packs);
+            }
         }
 
         private void ToggleFullScreen()
@@ -196,6 +200,7 @@ namespace Labb_3.ViewModel
             IsQuizResultsViewVisible = false;
 
             LoadPacks();
+            SaveQuestion();
 
             MenuViewModel.ActivePack = Packs.FirstOrDefault();
             ConfigurationViewModel.ActivePack = MenuViewModel.ActivePack;

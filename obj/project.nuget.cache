@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "G6A7EzpRuUQ=",
+  "dgSpecHash": "u8wS+LN92XQ=",
   "success": true,
-  "projectFilePath": "E:\\Coding\\VS Community\\Labb 3\\Labb 3\\Labb 3.csproj",
+  "projectFilePath": "C:\\Users\\Alieu\\Source\\Repos\\AlieuFaal\\Labb-3\\Labb 3.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\alidj\\.nuget\\packages\\fontawesome.sharp\\6.6.0\\fontawesome.sharp.6.6.0.nupkg.sha512"
+    "C:\\Users\\Alieu\\.nuget\\packages\\fontawesome.sharp\\6.6.0\\fontawesome.sharp.6.6.0.nupkg.sha512"
   ],
   "logs": []
 }

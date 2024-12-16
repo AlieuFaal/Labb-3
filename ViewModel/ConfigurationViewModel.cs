@@ -38,6 +38,8 @@ namespace Labb_3.ViewModel
         public string NewIncorrectAnswer2 { get; set; }
         public string NewIncorrectAnswer3 { get; set; }
 
+        public bool IsQuestionSelected => SelectedQuestion != null;
+
         private Question _selectedQuestion;
         public Question SelectedQuestion
         {
@@ -53,6 +55,7 @@ namespace Labb_3.ViewModel
                     OnPropertyChanged(nameof(SelectedIncorrectAnswer1));
                     OnPropertyChanged(nameof(SelectedIncorrectAnswer2));
                     OnPropertyChanged(nameof(SelectedIncorrectAnswer3));
+                    OnPropertyChanged(nameof(IsQuestionSelected));
                 }
             }
         }
@@ -130,13 +133,13 @@ namespace Labb_3.ViewModel
         private readonly ICommand _removeQuestionCommand;
         public ICommand RemoveQuestionCommand => _removeQuestionCommand;
 
-        private async void AddQuestion()
+        private void AddQuestion()
         {
             if (ActivePack != null)
             {
                 var newQuestion = new Question(NewQuestionQuery, NewCorrectAnswer, NewIncorrectAnswer1, NewIncorrectAnswer2, NewIncorrectAnswer3);
                 ActivePack.Questions.Add(newQuestion);
-                await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
+                //await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
                 OnPropertyChanged(nameof(Questions));
                 ClearNewQuestionFields();
             }
@@ -188,7 +191,7 @@ namespace Labb_3.ViewModel
             NewIncorrectAnswer1 = string.Empty;
             NewIncorrectAnswer2 = string.Empty;
             NewIncorrectAnswer3 = string.Empty;
-            _selectedQuestion = new Question(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+            _selectedQuestion = null;
         }
     }
 }

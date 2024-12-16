@@ -35,3 +35,40 @@ E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateNewP
 E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.baml
 E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\QuizResultsView.g.cs
 E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\QuizResultsView.baml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.dll
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\refint\Labb 3.dll
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.pdb
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\bin\Debug\net8.0-windows\Labb 3.exe
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\bin\Debug\net8.0-windows\Labb 3.deps.json
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\bin\Debug\net8.0-windows\Labb 3.runtimeconfig.json
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\bin\Debug\net8.0-windows\Labb 3.dll
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\bin\Debug\net8.0-windows\Labb 3.pdb
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\bin\Debug\net8.0-windows\FontAwesome.Sharp.dll
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.csproj.AssemblyReference.cache
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Dialogs\CreateNewPackDialog.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\View\ConfigurationView.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\View\MenuView.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\View\PlayerView.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\View\QuizResultsView.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3_MarkupCompile.cache
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3_MarkupCompile.lref
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Dialogs\CreateNewPackDialog.baml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.baml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\View\ConfigurationView.baml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\View\MenuView.baml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\View\PlayerView.baml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\View\QuizResultsView.baml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.g.resources
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.AssemblyInfoInputs.cache
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.AssemblyInfo.cs
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.csproj.CoreCompileInputs.cache
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.sourcelink.json
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.csproj.Up2Date
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.genruntimeconfig.cache
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\ref\Labb 3.dll

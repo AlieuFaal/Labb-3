@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\
 Labb_3
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-E:\Coding\VS Community\Labb 3\Labb 3\App.xaml
+C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\App.xaml
 71965250637
 
 29-11126694
-208-1576106901
+2081419988286
 Dialogs\CreateNewPackDialog.xaml;Dialogs\PackOptionsDialog.xaml;MainWindow.xaml;View\ConfigurationView.xaml;View\MenuView.xaml;View\PlayerView.xaml;View\QuizResultsView.xaml;
 
 False

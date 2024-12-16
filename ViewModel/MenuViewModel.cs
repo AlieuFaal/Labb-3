@@ -89,6 +89,7 @@ namespace Labb_3.ViewModel
             }, packs);
 
             Packs.Add(defaultPack);
+            SetActivePack(defaultPack);
         }
 
         public async void DeleteQuestionPack(object obj)
@@ -136,6 +137,10 @@ namespace Labb_3.ViewModel
             {
                 InsertDefaultPack();
                 await _questionPackService.SaveQuestionPacksAsync(Packs);
+            }
+            else
+            {
+                SetActivePack(Packs.First());
             }
         }
 

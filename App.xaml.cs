@@ -10,13 +10,5 @@ namespace Labb_3
     /// </summary>
     public partial class App : Application
     {
-        protected override async void OnExit(ExitEventArgs e)
-        {
-            if (Current.MainWindow?.DataContext is MainWindowViewModel viewModel)
-            {
-                await viewModel.OnApplicationExitAsync();
-            }
-            base.OnExit(e);
-        }
     }
 }
