@@ -31,6 +31,10 @@ namespace Labb_3.ViewModel
         }
 
         public ObservableCollection<Question> Questions { get; set; }
+      
+        public QuestionPack? Model => ActivePack?.Model;
+
+
 
         public string NewQuestionQuery { get; set; }
         public string NewCorrectAnswer { get; set; }
@@ -125,13 +129,16 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public QuestionPack? Model => ActivePack?.Model;
+
+
 
         private readonly ICommand _addQuestionCommand;
         public ICommand AddQuestionCommand => _addQuestionCommand;
 
         private readonly ICommand _removeQuestionCommand;
         public ICommand RemoveQuestionCommand => _removeQuestionCommand;
+
+
 
         private void AddQuestion()
         {
@@ -173,6 +180,8 @@ namespace Labb_3.ViewModel
             OnPropertyChanged(nameof(NewIncorrectAnswer2));
             OnPropertyChanged(nameof(NewIncorrectAnswer3));
         }
+
+
 
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {

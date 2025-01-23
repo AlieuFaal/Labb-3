@@ -12,6 +12,10 @@ namespace Labb_3.ViewModel
     {
         private readonly QuestionPackService _questionPackService;
 
+        private readonly MainWindowViewModel _mainWindowViewModel;
+
+        private readonly MenuViewModel _menuViewModel;
+
         private ObservableCollection<QuestionPackViewModel> _packs;
         public ObservableCollection<QuestionPackViewModel> Packs
         {
@@ -20,7 +24,6 @@ namespace Labb_3.ViewModel
             {
                 _packs = value;
                 OnPropertyChanged();
-                //OnSelectedQuestionPackChanged();
             }
         }
 
@@ -76,6 +79,19 @@ namespace Labb_3.ViewModel
             }
         }
 
+        public string PackCategory
+        {
+            get => model.Category;
+            set
+            {
+                if (model.Category != value)
+                {
+                    model.Category = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
 
         private async void CreatePack()
@@ -87,15 +103,14 @@ namespace Labb_3.ViewModel
                 return;
             }
 
-            var newPack = new QuestionPackViewModel(new QuestionPack(PackName, PackDifficulty, PackTimeLimit), Packs);
-            //var newPackViewModel = new QuestionPackViewModel(newPack);
-            
+            var newPack = new QuestionPackViewModel(new QuestionPack(PackName, PackDifficulty, PackTimeLimit, PackCategory), Packs, _mainWindowViewModel, _menuViewModel);
             Packs.Add(newPack);
 
             await _questionPackService.SaveQuestionPacksAsync(Packs);
 
             OnPropertyChanged(nameof(Packs));
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive)?.Close();
+            _menuViewModel.CategorizePacks();
         }
 
         private void Cancel()
@@ -108,10 +123,25 @@ namespace Labb_3.ViewModel
         public QuestionPackViewModel(QuestionPack pack, ObservableCollection<QuestionPackViewModel> packs)
         {
             _questionPackService = new QuestionPackService();
+
             this.model = pack;
             this.Questions = new ObservableCollection<Question>(pack.Questions);
             Packs = packs;
-           
+
+            CancelCommand = new DelegateCommand(_ => Cancel());
+            CreatePackCommand = new DelegateCommand(_ => CreatePack());
+        }
+
+        public QuestionPackViewModel(QuestionPack pack, ObservableCollection<QuestionPackViewModel> packs, MainWindowViewModel mainWindowViewModel, MenuViewModel menuViewModel)
+        {
+            this.model = pack;
+            this.Questions = new ObservableCollection<Question>(pack.Questions);
+            Packs = packs;
+
+            _mainWindowViewModel = mainWindowViewModel;
+            _menuViewModel = menuViewModel;
+            _questionPackService = new QuestionPackService();
+
             CancelCommand = new DelegateCommand(_ => Cancel());
             CreatePackCommand = new DelegateCommand(_ => CreatePack());
         }

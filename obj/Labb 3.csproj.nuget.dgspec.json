@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alieu\\Source\\Repos\\AlieuFaal\\Labb-3\\Labb 3.csproj": {}
+    "E:\\Coding\\VS Community\\Labb 3\\Labb 3\\Labb 3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alieu\\Source\\Repos\\AlieuFaal\\Labb-3\\Labb 3.csproj": {
+    "E:\\Coding\\VS Community\\Labb 3\\Labb 3\\Labb 3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alieu\\Source\\Repos\\AlieuFaal\\Labb-3\\Labb 3.csproj",
+        "projectUniqueName": "E:\\Coding\\VS Community\\Labb 3\\Labb 3\\Labb 3.csproj",
         "projectName": "Labb 3",
-        "projectPath": "C:\\Users\\Alieu\\Source\\Repos\\AlieuFaal\\Labb-3\\Labb 3.csproj",
-        "packagesPath": "C:\\Users\\Alieu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alieu\\Source\\Repos\\AlieuFaal\\Labb-3\\obj\\",
+        "projectPath": "E:\\Coding\\VS Community\\Labb 3\\Labb 3\\Labb 3.csproj",
+        "packagesPath": "C:\\Users\\alidj\\.nuget\\packages\\",
+        "outputPath": "E:\\Coding\\VS Community\\Labb 3\\Labb 3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Alieu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alidj\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -53,6 +53,10 @@
             "FontAwesome.Sharp": {
               "target": "Package",
               "version": "[6.6.0, )"
+            },
+            "MongoDB.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.2.1, )"
             }
           },
           "imports": [
@@ -74,7 +78,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,40 +1,3 @@
-E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.exe
-E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.deps.json
-E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.runtimeconfig.json
-E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.dll
-E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.pdb
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\MainWindow.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\App.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3_MarkupCompile.cache
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3_MarkupCompile.lref
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\MainWindow.baml
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.g.resources
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.GeneratedMSBuildEditorConfig.editorconfig
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.AssemblyInfoInputs.cache
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.AssemblyInfo.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.CoreCompileInputs.cache
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.sourcelink.json
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.dll
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\refint\Labb 3.dll
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.pdb
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.genruntimeconfig.cache
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\ref\Labb 3.dll
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\MenuView.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\MenuView.baml
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.AssemblyReference.cache
-E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\FontAwesome.Sharp.dll
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.Up2Date
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\ConfigurationView.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\PlayerView.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\ConfigurationView.baml
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\PlayerView.baml
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateNewPackDialog.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateNewPackDialog.baml
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.baml
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\QuizResultsView.g.cs
-E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\QuizResultsView.baml
 C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.dll
 C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\refint\Labb 3.dll
 C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.pdb
@@ -72,3 +35,61 @@ C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.sou
 C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.csproj.Up2Date
 C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\Labb 3.genruntimeconfig.cache
 C:\Users\Alieu\Source\Repos\AlieuFaal\Labb-3\obj\Debug\net8.0-windows\ref\Labb 3.dll
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.AssemblyReference.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateCategoryDialog.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateNewPackDialog.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\RemoveCategoryDialog.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\MainWindow.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\ConfigurationView.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\MenuView.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\PlayerView.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\QuizResultsView.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\App.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3_MarkupCompile.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3_MarkupCompile.lref
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.exe
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.deps.json
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.runtimeconfig.json
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Labb 3.pdb
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\DnsClient.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\FontAwesome.Sharp.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\MongoDB.Bson.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\MongoDB.Driver.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\MongoDB.EntityFrameworkCore.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\SharpCompress.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\Snappier.dll
+E:\Coding\VS Community\Labb 3\Labb 3\bin\Debug\net8.0-windows\ZstdSharp.dll
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateCategoryDialog.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\CreateNewPackDialog.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\PackOptionsDialog.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Dialogs\RemoveCategoryDialog.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\MainWindow.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\ConfigurationView.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\MenuView.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\PlayerView.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\View\QuizResultsView.baml
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.g.resources
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.GeneratedMSBuildEditorConfig.editorconfig
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.AssemblyInfoInputs.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.AssemblyInfo.cs
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.CoreCompileInputs.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.sourcelink.json
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.csproj.Up2Date
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.dll
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\refint\Labb 3.dll
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.pdb
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\Labb 3.genruntimeconfig.cache
+E:\Coding\VS Community\Labb 3\Labb 3\obj\Debug\net8.0-windows\ref\Labb 3.dll

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Labb_3.Model
@@ -6,6 +8,11 @@ namespace Labb_3.Model
     public class Question : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        [BsonId]
+        public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
+
+        public ObjectId QuestionPackId { get; set; }
 
         private string _query = string.Empty;
         public string Query
@@ -20,6 +27,7 @@ namespace Labb_3.Model
                 }
             }
         }
+        
         private string _correctAnswer = string.Empty;
         public string CorrectAnswer
         {

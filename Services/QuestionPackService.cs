@@ -1,92 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using Labb_3.Model;
-
 using Labb_3.ViewModel;
-using static System.Windows.Forms.Design.AxImporter;
+using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Labb_3.Services
 {
     public class QuestionPackService
     {
-        private static readonly string QuestionPacksFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Quiz Configurator", "QuestionPacks.json");
-        private readonly ObservableCollection<QuestionPackViewModel> packs;
+        private readonly QuizDbContext _context;
+
+        public QuestionPackService()
+        {
+            _context = new QuizDbContext();
+        }
+
 
         public async Task SaveQuestionPacksAsync(ObservableCollection<QuestionPackViewModel> packs)
         {
-            var directory = Path.GetDirectoryName(QuestionPacksFilePath);
-            if (directory != null && !Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-
             var existingPacks = await LoadQuestionPacksAsync();
             foreach (var pack in packs)
             {
                 if (!existingPacks.Any(p => p.Model.Name == pack.Model.Name))
                 {
-                    existingPacks.Add(pack);
+                   _context.QuestionPacks.Add(pack.Model);
                 }
             }
-
-            var questionPacks = existingPacks.Select(p => p.Model).ToList();
-
-            var json = JsonSerializer.Serialize(questionPacks, new JsonSerializerOptions { WriteIndented = true });
-            await File.WriteAllTextAsync(QuestionPacksFilePath, json);
+            await _context.SaveChangesAsync();
         }
-
 
 
         public async Task<ObservableCollection<QuestionPackViewModel>> LoadQuestionPacksAsync()
         {
-            if (!File.Exists(QuestionPacksFilePath))
-            {
-                return new ObservableCollection<QuestionPackViewModel>();
-            }
-            var json = await File.ReadAllTextAsync(QuestionPacksFilePath);
-            var questionPacks = JsonSerializer.Deserialize<List<QuestionPack>>(json) ?? new List<QuestionPack>();
+            var questionPacks = await _context.QuestionPacks.ToListAsync();
 
-            var viewModelPacks = new ObservableCollection<QuestionPackViewModel>(questionPacks.Select(p => new QuestionPackViewModel(p, packs)));
+            var viewModelPacks = new ObservableCollection<QuestionPackViewModel>();
+
+            foreach (var pack in questionPacks)
+            {
+                var questions = await _context.Questions.Where(q => q.QuestionPackId == pack.Id).ToListAsync();
+                pack.Questions = questions;
+                viewModelPacks.Add(new QuestionPackViewModel(pack, new ObservableCollection<QuestionPackViewModel>()));
+            }
+
             return viewModelPacks;
         }
 
 
-
         public async Task RemoveQuestionPackAsync(QuestionPackViewModel packToRemove)
         {
-            var packs = await LoadQuestionPacksAsync();
-            var pack = packs.FirstOrDefault(p => p.Model.Name == packToRemove.Model.Name);
+            var pack = await _context.QuestionPacks.FirstOrDefaultAsync(p => p.Name == packToRemove.Model.Name);
             if (pack != null)
             {
-                packs.Remove(pack);
-                var questionPacks = packs.Select(p => p.Model).ToList();
-                var json = JsonSerializer.Serialize(questionPacks, new JsonSerializerOptions { WriteIndented = true });
-                await File.WriteAllTextAsync(QuestionPacksFilePath, json);
+                _context.QuestionPacks.Remove(pack);
+                await _context.SaveChangesAsync();
             }
         }
 
 
         public async Task RemoveQuestionAsync(QuestionPackViewModel pack, Question questionToRemove)
         {
-            var packs = await LoadQuestionPacksAsync();
-            var packToUpdate = packs.FirstOrDefault(p => p.Model.Name == pack.Model.Name);
+            var packToUpdate = await _context.QuestionPacks.FirstOrDefaultAsync(p => p.Name == pack.Model.Name);
             if (packToUpdate != null)
             {
-                var question = packToUpdate.Model.Questions.FirstOrDefault(q => q.Query == questionToRemove.Query);
+                var question = await _context.Questions.FirstOrDefaultAsync(q => q.Query == questionToRemove.Query && q.QuestionPackId == packToUpdate.Id);
                 if (question != null)
                 {
-                    packToUpdate.Model.Questions.Remove(question);
-                    var questionPacks = packs.Select(p => p.Model).ToList();
-                    var json = JsonSerializer.Serialize(questionPacks, new JsonSerializerOptions { WriteIndented = true });
-                    await File.WriteAllTextAsync(QuestionPacksFilePath, json);
+                    _context.Questions.Remove(question);
+                    await _context.SaveChangesAsync();
                 }
             }
         }
@@ -94,46 +76,113 @@ namespace Labb_3.Services
 
         public async Task UpdateQuestionPackAsync(QuestionPackViewModel updatedPack, string originalName)
         {
-            var packs = await LoadQuestionPacksAsync();
-            var pack = packs.FirstOrDefault(p => p.Model.Name == originalName);
+            var pack = await _context.QuestionPacks.FirstOrDefaultAsync(p => p.Name == originalName);
             if (pack != null)
             {
-                pack.Model.Name = updatedPack.Model.Name;
-                pack.Model.Difficulty = updatedPack.Model.Difficulty;
-                pack.Model.TimeLimit = updatedPack.Model.TimeLimit;
-                pack.Model.Questions = updatedPack.Model.Questions;
+                pack.Name = updatedPack.Model.Name;
+                pack.Difficulty = updatedPack.Model.Difficulty;
+                pack.TimeLimit = updatedPack.Model.TimeLimit;
+                pack.Questions = updatedPack.Model.Questions;
+                pack.Category = updatedPack.Model.Category;
 
-                var questionPacks = packs.Select(p => p.Model).ToList();
-                var json = JsonSerializer.Serialize(questionPacks, new JsonSerializerOptions { WriteIndented = true });
-                await File.WriteAllTextAsync(QuestionPacksFilePath, json);
+                await _context.SaveChangesAsync();
             }
 
         }
 
+
         public async Task SaveQuestionsAsync(List<Question> questions, QuestionPackViewModel packName)
         {
-            var existingPacks = await LoadQuestionPacksAsync();
-
-            var packToUpdate = existingPacks.FirstOrDefault(p => p.Model.Name == packName.Model.Name);
+            var packToUpdate = await _context.QuestionPacks.FirstOrDefaultAsync(p => p.Name == packName.Model.Name);
             if (packToUpdate != null)
             {
-                packToUpdate.Model.Questions = questions;
+                var existingQuestions = await _context.Questions.Where(q => q.QuestionPackId == packToUpdate.Id).ToListAsync();
+
+                foreach (var question in questions)
+                {
+                    var existingQuestion = existingQuestions.FirstOrDefault(q => q.Query == question.Query);
+                    if (existingQuestion != null)
+                    {
+                        existingQuestion.CorrectAnswer = question.CorrectAnswer;
+                        existingQuestion.IncorrectAnswer1 = question.IncorrectAnswer1;
+                        existingQuestion.IncorrectAnswer2 = question.IncorrectAnswer2;
+                        existingQuestion.IncorrectAnswer3 = question.IncorrectAnswer3;
+                        existingQuestion.IncorrectAnswers = question.IncorrectAnswers;
+                    }
+                    else
+                    {
+                        question.QuestionPackId = packToUpdate.Id;
+                        question.Id = ObjectId.GenerateNewId();
+                        _context.Questions.Add(question);
+                    }
+                }
+
+                var questionsToRemove = existingQuestions.Where(eq => !questions.Any(q => q.Query == eq.Query)).ToList();
+                _context.Questions.RemoveRange(questionsToRemove);
+
+                packToUpdate.Questions = questions;
             }
             else
             {
-                var newPack = new QuestionPackViewModel(new QuestionPack
+                var newPack = new QuestionPack
                 {
                     Name = packName.Model.Name,
                     Difficulty = packName.Model.Difficulty,
                     TimeLimit = packName.Model.TimeLimit,
-                    Questions = questions
-                }, packs);
-                existingPacks.Add(newPack);
+                    Questions = questions,
+                    Category = packName.Model.Category
+                };
+                _context.QuestionPacks.Add(newPack);
+
+                foreach (var question in questions)
+                {
+                    question.QuestionPackId = newPack.Id;
+                    question.Id = ObjectId.GenerateNewId();
+                    _context.Questions.Add(question);
+                }
             }
 
-            var questionPacks = existingPacks.Select(p => p.Model).ToList();
-            var json = JsonSerializer.Serialize(questionPacks, new JsonSerializerOptions { WriteIndented = true });
-            await File.WriteAllTextAsync(QuestionPacksFilePath, json);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task SaveCategoriesAsync(ObservableCollection<string> categories)
+        {
+            var existingCategories = await LoadCategoriesAsync();
+            var categoriesToAdd = categories.Except(existingCategories.Select(c => c.Name)).Select(name => new Category(name)).ToList();
+            var categoriesToRemove = existingCategories.Where(c => !categories.Contains(c.Name)).ToList();
+
+            if (categoriesToAdd.Any())
+            {
+                await _context.Categories.InsertManyAsync(categoriesToAdd);
+            }
+
+            if (categoriesToRemove.Any())
+            {
+                var filter = Builders<Category>.Filter.In(c => c.Id, categoriesToRemove.Select(c => c.Id));
+                await _context.Categories.DeleteManyAsync(filter);
+            }
+
+            QuestionPack.Categories.Clear();
+            foreach (var category in categories)
+            {
+                QuestionPack.Categories.Add(category);
+            }
+        }
+
+        public async Task<ObservableCollection<Category>> LoadCategoriesAsync()
+        {
+            var categories = await _context.Categories.Find(_ => true).ToListAsync();
+            var allCategories = new ObservableCollection<Category>(categories);
+
+            foreach (var defaultCategory in QuestionPack.Categories)
+            {
+                if (!allCategories.Any(c => c.Name == defaultCategory))
+                {
+                    allCategories.Add(new Category(defaultCategory));
+                }
+            }
+
+            return allCategories;
         }
     }
 }

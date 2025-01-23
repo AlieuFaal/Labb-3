@@ -110,6 +110,8 @@ namespace Labb_3.ViewModel
 
         public ICommand OpenPackOptionsDialogCommand => new DelegateCommand(_ => OpenPackOptionsDialog());
 
+
+
         private void OpenPackOptionsDialog()
         {
             if (ActivePack != null)
@@ -123,8 +125,6 @@ namespace Labb_3.ViewModel
         {
             if (ActivePack != null)
             {
-                //await _questionPackService.SaveQuestionsAsync(ActivePack.Questions.ToList(), ActivePack);
-
                 IsPlayerViewVisible = true;
                 IsConfigurationViewVisible = false;
                 IsQuizResultsViewVisible = false;
@@ -154,13 +154,13 @@ namespace Labb_3.ViewModel
             }
         }
 
-        public async void SaveQuestionPacks()
-        {
-            if (Packs != null)
-            {
-                await _questionPackService.SaveQuestionPacksAsync(Packs);
-            }
-        }
+        //public async void SaveQuestionPacks()
+        //{
+        //    if (Packs != null)
+        //    {
+        //        await _questionPackService.SaveQuestionPacksAsync(Packs);
+        //    }
+        //}
 
         private void ToggleFullScreen()
         {

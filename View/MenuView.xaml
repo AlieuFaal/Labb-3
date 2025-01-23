@@ -7,11 +7,13 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
              xmlns:viewmodel="clr-namespace:Labb_3.ViewModel" 
              xmlns:converters="clr-namespace:Labb_3.Converters" 
-             d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
+             d:DataContext="{d:DesignInstance Type=viewmodel:MenuViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        <converters:EnumToListConverter x:Key="EnumToListConverter"/>
+        <converters:EnumToStringConverter x:Key="EnumToStringConverter"/>
     </UserControl.Resources>
     <UserControl.DataContext>
         <Binding Path="MenuViewModel" />
@@ -24,20 +26,23 @@
                           Icon="{fa:Icon FolderPlus}"
                           Command="{Binding OpenCreatePackDialogCommand}"/>
 
-                <MenuItem 
-                    Header="_Select Question Pack"
-                    Icon="{fa:Icon FolderOpen}">
-                    <MenuItem.ItemsSource>
-                        <Binding Path="Packs"/>
-                    </MenuItem.ItemsSource>
-                    <MenuItem.ItemContainerStyle>
-                        <Style TargetType="MenuItem">
-                            <Setter Property="Header" Value="{Binding Model.Name}" />
-                            <Setter Property="ToolTip" Value="{Binding Model.Difficulty}" />
-                            <Setter Property="Command" Value="{Binding DataContext.SetActivePackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
-                            <Setter Property="CommandParameter" Value="{Binding}" />
-                        </Style>
-                    </MenuItem.ItemContainerStyle>
+                <MenuItem Header="_Select Question Pack"
+                          Icon="{fa:Icon FolderOpen}">
+                    <MenuItem Header="Categories" 
+                              ItemsSource="{Binding CategorizedPacks}">
+                        <MenuItem.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding QuestionPacks}">
+                                <TextBlock Text="{Binding Category, Converter={StaticResource EnumToStringConverter}}" />
+                                <HierarchicalDataTemplate.ItemTemplate>
+                                    <DataTemplate>
+                                        <MenuItem Header="{Binding Model.Name}"
+                                                  Command="{Binding DataContext.SetActivePackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                  CommandParameter="{Binding}" />
+                                    </DataTemplate>
+                                </HierarchicalDataTemplate.ItemTemplate>
+                            </HierarchicalDataTemplate>
+                        </MenuItem.ItemTemplate>
+                    </MenuItem>
                 </MenuItem>
 
                 <MenuItem Header="_Delete Question Pack" 
@@ -45,6 +50,16 @@
                           IsEnabled="{Binding CanDeletePack, Converter={StaticResource NullToBooleanConverter}}"
                           Command="{Binding DeleteActivePackCommand}"/>
 
+
+                <Separator />
+                
+                <MenuItem Header="_Add Categories" 
+                          Icon="{fa:Icon Layergroup}"
+                          Command="{Binding OpenAddCategoryDialogCommand}"/>
+
+                <MenuItem Header="_Delete Categories" 
+                          Icon="{fa:Icon Squareminus}"
+                          Command="{Binding OpenDeleteCategoryDialogCommand}"/>
 
                 <Separator />
 

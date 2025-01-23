@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:Labb_3.Dialogs" 
         xmlns:converters="clr-namespace:Labb_3.Converters" 
         xmlns:viewmodel="clr-namespace:Labb_3.ViewModel" 
+        xmlns:model="clr-namespace:Labb_3.Model"
         d:DataContext="{d:DesignInstance Type=viewmodel:QuestionPackViewModel}"
         mc:Ignorable="d"
-        Title="New Question Pack" Height="280" Width="230" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Dialogs/letter-q.ico">
+        Title="New Question Pack" Height="407" Width="280" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Dialogs/letter-q.ico">
     <Window.Resources>
         <converters:EnumToListConverter x:Key="EnumToListConverter" />
         <converters:DoubleToIntConverter x:Key="DoubleToIntConverter" />
@@ -16,12 +17,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="37*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="55*"/>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="131*"/>
+            <RowDefinition Height="105*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="0,6,0,75" Grid.RowSpan="2">
+        <StackPanel Grid.Row="0" Margin="0,6,0,3">
 
             <Label   Content="Pack Name:"
                      FontWeight="Bold" Height="24" Width="202"/>
@@ -31,7 +33,7 @@
 
         </StackPanel>
 
-        <StackPanel Margin="0,1,0,74" Grid.Row="1" Grid.RowSpan="2">
+        <StackPanel Margin="0,1,0,74" Grid.Row="1" Grid.RowSpan="3">
 
             <Label Content="Difficulty:"
                    FontWeight="Bold" 
@@ -41,14 +43,27 @@
                       Height="24" 
                       ItemsSource="{Binding PackDifficulty, Converter={StaticResource EnumToListConverter}}"
                       SelectedItem="{Binding PackDifficulty, Mode=TwoWay}"/>
-            
+
+        </StackPanel>
+
+        <StackPanel Margin="0,24,0,-4" Grid.Row="2" Grid.RowSpan="2">
+
+            <Label Content="Category:"
+                   FontWeight="Bold" 
+                   Width="202" 
+                   Height="29"/>
+            <ComboBox Width="200" 
+                      Height="24" 
+                      ItemsSource="{Binding Source={x:Static model:QuestionPack.Categories}}"
+                      SelectedItem="{Binding PackCategory, Mode=TwoWay}"/>
+
         </StackPanel>
 
         <Label 
             Content="{Binding ElementName=TimeSlider, Path=Value, Converter={StaticResource DoubleToIntConverter}}" 
-            Margin="79,1,90,74" Grid.Row="2" />
+            Margin="105,1,90,67" Grid.Row="3" />
 
-        <StackPanel Margin="0,1,0,0" Grid.Row="2">
+        <StackPanel Margin="0,1,0,0" Grid.Row="3">
 
             <Label Content="Time Limit:"
                    FontWeight="Bold" 
@@ -67,13 +82,13 @@
         </StackPanel>
 
         <Button Content="Cancel" 
-                Margin="40,70,120,8" 
-                Grid.Row="2"
+                Margin="40,64,160,8" 
+                Grid.Row="3"
                 Command="{Binding CancelCommand}"/>
 
         <Button Content="Create" 
-                Margin="120,70,40,8" 
-                Grid.Row="2"
+                Margin="160,64,40,8" 
+                Grid.Row="3"
                 Command="{Binding CreatePackCommand}"/>
     </Grid>
 </Window>

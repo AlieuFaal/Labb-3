@@ -7,10 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Dialogs\CreateCategoryDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Dialogs\CreateNewPackDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Dialogs\PackOptionsDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dialogs\RemoveCategoryDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\ConfigurationView.xaml.cs">
@@ -27,10 +33,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Dialogs\CreateCategoryDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Dialogs\CreateNewPackDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Dialogs\PackOptionsDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialogs\RemoveCategoryDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
