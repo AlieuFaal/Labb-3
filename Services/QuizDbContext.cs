@@ -11,7 +11,7 @@ public class QuizDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var connectionString = "mongodb://localhost:27017/";
+#error  var connectionString = "Insert your connection string here";
         var collection = "AlieuFaalDb";
 
         optionsBuilder.UseMongoDB(connectionString, collection);

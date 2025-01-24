@@ -16,5 +16,5 @@ E:\Coding\VS Community\Labb 3\Labb 3\App.xaml
 225868306212
 Dialogs\CreateCategoryDialog.xaml;Dialogs\CreateNewPackDialog.xaml;Dialogs\PackOptionsDialog.xaml;Dialogs\RemoveCategoryDialog.xaml;MainWindow.xaml;View\ConfigurationView.xaml;View\MenuView.xaml;View\PlayerView.xaml;View\QuizResultsView.xaml;
 
-False
+True
 
